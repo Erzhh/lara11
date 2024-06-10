@@ -9,24 +9,29 @@ Requirements
 
 ### GIT
 ```bash 
-    git clone https://github.com/Erzhh/lara11.git 
+git clone https://github.com/Erzhh/lara11.git 
 ````
 
-````bash  
-composer install
+````bash
+composer install | docker run --rm -v $(pwd):/app composer install
 ````
 # Run commands
 ```bash
 docker-compose up --build -d | make build
 ```
-````bash  
+````bash
 cp .env.example .env
+````
+````bash  
+  - make ar c="key:generate"
+  - make ar c="cache:airports"
 ````
 
 
 ````bash  
 Open your browser :
     * http://localhost:80
+    * http://localhost:80/docs
 
 This project use the following ports :
 

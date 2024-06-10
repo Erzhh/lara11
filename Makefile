@@ -13,3 +13,14 @@ restart:
 
 composer:
 	docker-compose -f docker-compose.yml exec app composer $(c)
+
+db-up:
+	docker-compose -f docker-compose-db.yml up -d
+db-build:
+	docker-compose -f docker-compose-db.yml up --build -d
+db-stop:
+	docker-compose -f docker-compose-db.yml stop
+db-down:
+	docker-compose -f docker-compose-db.yml down
+db-restart:
+	docker-compose -f docker-compose-db.yml restart

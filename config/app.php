@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\ServiceProvider;
+
 return [
 
     /*
@@ -99,11 +101,12 @@ return [
 
     'key' => env('APP_KEY'),
 
-    'previous_keys' => [
-        ...array_filter(
-            explode(',', env('APP_PREVIOUS_KEYS', ''))
-        ),
-    ],
+    'previous_keys' => [],
+
+    'providers' => ServiceProvider::defaultProviders()->merge([
+        //....
+    ])->toArray(),
+
 
     /*
     |--------------------------------------------------------------------------
