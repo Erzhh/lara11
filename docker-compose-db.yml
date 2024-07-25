@@ -7,3 +7,19 @@ services:
       container_name: laravel_redis
       ports:
         - "6379:6379"
+
+    db:
+      image: postgres:15
+      restart: always
+      container_name: laravel_db
+      environment:
+        POSTGRES_DB: ${DB_DATABASE}
+        POSTGRES_USER: ${DB_USERNAME}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+      ports:
+        - ${PORT_DB:-5432}:5432
+      volumes:
+        - db_volume:/var/lib/postgresql/data
+
+volumes:
+  db_volume:

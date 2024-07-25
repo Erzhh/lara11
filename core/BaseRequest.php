@@ -2,7 +2,7 @@
 
 namespace Core;
 
-use app\Domain\Access\Users\Models\User as User;
+use App\Domain\Access\Users\Models\User as User;
 use App\Support\Traits\SanitizerTrait;
 use Illuminate\Foundation\Http\FormRequest as LaravelRequest;
 use Illuminate\Support\Arr;

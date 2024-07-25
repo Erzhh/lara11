@@ -1,46 +1,51 @@
 <?php
 
-namespace app\Domain\Access\Users\Models;
+namespace App\Domain\Access\Users\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Doctrine\ORM\Mapping as ORM;
 
-class User extends Authenticatable
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="users")
+ */
+class User
 {
-    use HasFactory, Notifiable;
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    public $id;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * @ORM\Column(type="string")
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    public $name;
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
+     * @ORM\Column(type="string")
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    public $email;
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * @ORM\Column(type="string")
      */
-    protected function casts(): array
+    private $password;
+
+
+    public function setName(string $name): void
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        $this->name = $name;
     }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
 }
