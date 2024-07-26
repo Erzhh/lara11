@@ -2,6 +2,7 @@
 
 namespace App\Domain\Access\Users\Models;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +47,14 @@ class User
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @ORM\NamedQuery(name="User.findByName", query="SELECT u FROM App\Entities\User u WHERE u.name = :name")
+     */
+    public static function getRepository(EntityManagerInterface $em)
+    {
+        return $em->getRepository(User::class);
     }
 
 }

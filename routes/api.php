@@ -9,6 +9,8 @@ Route::middleware([])->group(function () {
     Route::get('airports', [AirportController::class, 'list']);
 
     Route::get('users', [UserController::class, 'list']);
+    Route::get('users/list/limited/{page}/{limit}', [UserController::class, 'paginate']);
+
     Route::post('users', [UserController::class, 'store']);
     Route::put('users/{id}', [UserController::class, 'update']);
     Route::get('users/{id}', [UserController::class, 'find']);

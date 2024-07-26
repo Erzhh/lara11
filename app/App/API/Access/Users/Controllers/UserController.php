@@ -35,6 +35,20 @@ class UserController extends BaseController
         return response()->json(['users' => $users ]);
     }
 
+    public function paginate(int $page, int $limit): JsonResponse
+    {
+        $queryBuilder = $this->repository->createQueryBuilder();
+        $queryBuilder->select('u')
+            ->from(User::class, 'u')
+            ->setFirstResult(($page - 1) * $limit)
+            ->setMaxResults($limit);
+
+        $query = $queryBuilder->getQuery();
+        $users = $query->getResult();
+
+        return response()->json(['users' => $users ]);
+    }
+
     public function store(UserCreateRequest $request): JsonResponse
     {
         $dto = $request->getData();
