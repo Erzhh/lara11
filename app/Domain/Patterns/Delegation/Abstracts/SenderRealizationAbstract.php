@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Domain\Patterns\Delegation\Abstracts;
+
 use Domain\Patterns\Delegation\Interfaces\SenderInterface;
 
 abstract class SenderRealizationAbstract implements SenderInterface

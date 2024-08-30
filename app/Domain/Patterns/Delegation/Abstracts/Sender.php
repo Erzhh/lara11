@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Domain\Patterns\Delegation\Abstracts;
+
 use App\Domain\Patterns\Delegation\Realizations\SmsSenderRealization;
 use Domain\Patterns\Delegation\Interfaces\SenderInterface;
 use Domain\Patterns\Delegation\Realizations\EmailSenderRealization;
