@@ -2,6 +2,7 @@
 
 use API\Access\Users\Controllers\UserController;
 use API\Handbooks\Controllers\AirportController;
+use API\Movies\Controllers\MovieGetController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([])->group(function () {
@@ -15,5 +16,8 @@ Route::middleware([])->group(function () {
     Route::put('users/{id}', [UserController::class, 'update']);
     Route::get('users/{id}', [UserController::class, 'find']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
+
+    Route::get('movies/list', [MovieGetController::class, 'list']);
+    Route::get('movies/elastic', [MovieGetController::class, 'elastic']);
 
 });

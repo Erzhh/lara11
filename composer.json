@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "binarytorch/larecipe": "^2.7",
+        "elasticsearch/elasticsearch": "^8.16",
         "laravel-doctrine/orm": "^2.1",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",

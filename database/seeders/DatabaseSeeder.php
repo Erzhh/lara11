@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Domain\Access\Users\Models\User;
 use Illuminate\Database\Seeder;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $file_path = resource_path('database/movies_top_250.sql');
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        DB::unprepared(
+            file_get_contents($file_path)
+        );
     }
 }

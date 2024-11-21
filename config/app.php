@@ -104,6 +104,7 @@ return [
     'previous_keys' => [],
 
     'providers' => ServiceProvider::defaultProviders()->merge([
+
         //....
     ])->toArray(),
 

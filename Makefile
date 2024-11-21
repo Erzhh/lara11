@@ -24,3 +24,14 @@ db-down:
 	docker-compose -f docker-compose-db.yml down
 db-restart:
 	docker-compose -f docker-compose-db.yml restart
+
+elk-up:
+	docker-compose -f docker-compose-elk.yml up -d
+elk-build:
+	docker-compose -f docker-compose-elk.yml up --build -d
+elk-stop:
+	docker-compose -f docker-compose-elk.yml stop $(c)
+elk-down:
+	docker-compose -f docker-compose-elk.yml down $(c)
+elk-restart:
+	docker-compose -f docker-compose-elk.yml restart

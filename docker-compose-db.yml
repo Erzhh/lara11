@@ -7,6 +7,8 @@ services:
       container_name: laravel_redis
       ports:
         - "6379:6379"
+      networks:
+        - app-network
 
     db:
       image: postgres:15
@@ -20,6 +22,12 @@ services:
         - ${PORT_DB:-5432}:5432
       volumes:
         - db_volume:/var/lib/postgresql/data
+      networks:
+        - app-network
 
 volumes:
   db_volume:
+
+networks:
+  app-network:
+    driver: bridge
