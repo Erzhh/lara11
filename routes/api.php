@@ -1,6 +1,7 @@
 <?php
 
 use API\Access\Users\Controllers\UserController;
+use API\Advert\Controllers\AdvertController;
 use API\Handbooks\Controllers\AirportController;
 use API\Movies\Controllers\MovieGetController;
 use Illuminate\Support\Facades\Route;
@@ -19,5 +20,11 @@ Route::middleware([])->group(function () {
 
     Route::get('movies/list', [MovieGetController::class, 'list']);
     Route::get('movies/elastic', [MovieGetController::class, 'elastic']);
+
+    Route::post('advert', [AdvertController::class, 'store']);
+    Route::get('advert', [AdvertController::class, 'list']);
+    Route::get('advert/{id}', [AdvertController::class, 'findById']);
+    Route::delete('advert/{id}', [AdvertController::class, 'deleteById']);
+    Route::put('advert/{id}', [AdvertController::class, 'update']);
 
 });

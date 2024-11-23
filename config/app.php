@@ -104,8 +104,7 @@ return [
     'previous_keys' => [],
 
     'providers' => ServiceProvider::defaultProviders()->merge([
-
-        //....
+        MongoDB\Laravel\MongoDBServiceProvider::class,
     ])->toArray(),
 
 
