@@ -6,47 +6,29 @@ use API\Access\Users\Requests\UserCreateRequest;
 use API\Access\Users\Requests\UserUpdateRequest;
 use App\Domain\Access\Users\Models\User;
 use Core\BaseController;
-use Doctrine\ORM\EntityManagerInterface;
 use Illuminate\Http\JsonResponse;
 
 class UserController extends BaseController
 {
-
-    protected EntityManagerInterface $repository;
-
-    public function __construct(EntityManagerInterface $repository)
-    {
-        $this->repository = $repository;
-    }
-
     public function find($id): JsonResponse
     {
-        $userRepository = $this->repository->getRepository(User::class);
-        $user = $userRepository->find($id);
+        $record = User::query()->find($id);
 
-        return response()->json(['user' => $user]);
+        return response()->json(['user' => $record]);
     }
 
     public function list(): JsonResponse
     {
-        $userRepository = $this->repository->getRepository(User::class);
-        $users = $userRepository->findAll();
+        $records = User::query()->get();
 
-        return response()->json(['users' => $users ]);
+        return response()->json(['users' => $records ]);
     }
 
     public function paginate(int $page, int $limit): JsonResponse
     {
-        $queryBuilder = $this->repository->createQueryBuilder();
-        $queryBuilder->select('u')
-            ->from(User::class, 'u')
-            ->setFirstResult(($page - 1) * $limit)
-            ->setMaxResults($limit);
+        $records = User::query()->paginate();
 
-        $query = $queryBuilder->getQuery();
-        $users = $query->getResult();
-
-        return response()->json(['users' => $users ]);
+        return response()->json(['users' => $records ]);
     }
 
     public function store(UserCreateRequest $request): JsonResponse
@@ -54,42 +36,27 @@ class UserController extends BaseController
         $dto = $request->getData();
 
         $user = new User();
-        $user->setName($dto->name);
-        $user->setEmail($dto->email);
-        $user->setPassword($dto->getHashPass());
-
-        $this->repository->persist($user);
-        $this->repository->flush();
+        $user->fill($dto->toArray());
+        $user->save();
 
         return response()->json(['user' => $user],201);
     }
-
 
     public function update(UserUpdateRequest $request, $id): JsonResponse
     {
         $dto = $request->getData();
 
-        $userRepository = $this->repository->getRepository(User::class);
-        $user = $userRepository->find($id);
-
+        $user = User::query()->findOrFail($id);
         $user->setName($dto->name);
-
-        $this->repository->flush();
+        $user->save();
 
         return response()->json([],204);
     }
-
 
     public function destroy($id): JsonResponse
     {
-        $userRepository = $this->repository->getRepository(User::class);
-        $user = $userRepository->find($id);
-
-        $this->repository->remove($user);
-        $this->repository->flush();
+        $user = User::query()->find($id)->delete();
 
         return response()->json([],204);
     }
-
-
 }

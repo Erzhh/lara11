@@ -13,6 +13,7 @@
         "laravel/tinker": "^2.9",
         "league/fractal": "^0.20.1",
         "mongodb/laravel-mongodb": "^5.1",
+        "orchid/platform": "^14.44",
         "prettus/l5-repository": "^2.9",
         "spatie/laravel-data": "^4.6"
     },

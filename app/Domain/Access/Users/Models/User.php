@@ -2,59 +2,52 @@
 
 namespace App\Domain\Access\Users\Models;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Mapping as ORM;
+use Illuminate\Contracts\Auth\Authenticatable;
+use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\SoftDeletes;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="users")
- */
-class User
+class User extends Model implements Authenticatable
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    public $id;
+    use SoftDeletes;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    public $name;
+    protected $connection = 'mongodb';
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    public $email;
+    protected $table = 'users';
+    protected $fillable = ['name', 'email', 'password'];
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $password;
-
-
-    public function setName(string $name): void
+    function getAuthIdentifierName()
     {
-        $this->name = $name;
+        // TODO: Implement getAuthIdentifierName() method.
     }
 
-    public function setEmail(string $email): void
+    public function getAuthIdentifier()
     {
-        $this->email = $email;
+        // TODO: Implement getAuthIdentifier() method.
     }
 
-    public function setPassword(string $password): void
+    public function getAuthPasswordName()
     {
-        $this->password = $password;
+        // TODO: Implement getAuthPasswordName() method.
     }
 
-    /**
-     * @ORM\NamedQuery(name="User.findByName", query="SELECT u FROM App\Entities\User u WHERE u.name = :name")
-     */
-    public static function getRepository(EntityManagerInterface $em)
+    public function getAuthPassword()
     {
-        return $em->getRepository(User::class);
+        // TODO: Implement getAuthPassword() method.
+    }
+
+    public function getRememberToken()
+    {
+        // TODO: Implement getRememberToken() method.
+    }
+
+    public function setRememberToken($value)
+    {
+        // TODO: Implement setRememberToken() method.
+    }
+
+    public function getRememberTokenName()
+    {
+        // TODO: Implement getRememberTokenName() method.
     }
 
 }

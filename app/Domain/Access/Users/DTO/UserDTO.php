@@ -17,4 +17,13 @@ class UserDTO extends Data
         return Hash::make($this->password);
     }
 
+    public function toArray(): array
+    {
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->getHashPass(),
+        ];
+    }
+
 }
