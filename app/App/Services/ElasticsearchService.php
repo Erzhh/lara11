@@ -15,14 +15,16 @@ class ElasticsearchService
         $this->client = ClientBuilder::create()
                                     ->setHosts(config()->get('services.search.hosts'))
                                     ->build();
+
+        $this->client->info();
     }
 
     public function getClient()
     {
         try {
-            $this->client->info();
 
             return $this->client;
+
         } catch (NoNodeAvailableException $e) {
             printf ("NoNodesAvailableException: %s\n", $e->getMessage());
         }

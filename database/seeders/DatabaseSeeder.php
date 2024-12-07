@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $file_path = resource_path('database/movies_top_250.sql');
 
-        DB::unprepared(
-            file_get_contents($file_path)
-        );
+        DB::unprepared( file_get_contents($file_path) );
     }
 }

@@ -2,11 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Orchid\Screens;
+namespace App\Orchid\Screens\Movies;
 
+use App\Domain\Movies\Models\Movie;
+use App\Orchid\Filters\Movies\MovieSelection;
 use Orchid\Screen\Screen;
+use Orchid\Screen\TD;
+use Orchid\Support\Facades\Layout;
 
-class PlatformScreen extends Screen
+class ListScreen extends Screen
 {
     /**
      * Fetch data to be displayed on the screen.
@@ -15,7 +19,11 @@ class PlatformScreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'records' => Movie::query()
+                            ->filters(MovieSelection::class)
+                            ->paginate()
+        ];
     }
 
     /**
@@ -51,6 +59,16 @@ class PlatformScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [];
+        return [
+            MovieSelection::class,
+            Layout::table('records',[
+                TD::make('id'),
+                TD::make('photo')->render(function ($value) {
+                    return "<img src='{$value->url_logo}' alt='{$value->url_logo}' style='width: 100px;'>";
+                }),
+                TD::make('movie'),
+                TD::make('overview')
+            ])
+        ];
     }
 }

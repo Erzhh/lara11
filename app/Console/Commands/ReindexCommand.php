@@ -33,17 +33,18 @@ class ReindexCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $this->info('Indexing all articles. This might take a while...');
+
         foreach (Movie::cursor() as $movie)
         {
             $data = [
                 'index' => $movie->getSearchIndex(),
                 'type' => $movie->getSearchType(),
-                'id' => $movie->rating,
+                'id' => $movie->id,
                 'body' => $movie->toSearchArray(),
             ];
             $this->elasticsearch->index($data);

@@ -7,8 +7,7 @@ if [ "$1" == "up" ]; then
         make elk-up && sleep 1
         make db-up && sleep 1
         make up && sleep 1
-        make ar c=optimize
-        make ar c=key:generate
+        make ar c=optimize:clear
         make ar c=optimize
     echo "Docker containers are up! 🔥🔥🔥"
 

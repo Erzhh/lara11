@@ -3,16 +3,17 @@
 namespace App\Domain\Movies\Models;
 
 use App\Support\Traits\Searchable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Orchid\Filters\Filterable;
+use Orchid\Filters\Types\Where;
+use Orchid\Screen\AsSource;
 
 class Movie extends Model
 {
-    use HasFactory;
     use Searchable;
+    use AsSource, Filterable;
 
     protected $fillable = [
-        'rating',
         'movie',
         'year',
         'country',
@@ -23,4 +24,11 @@ class Movie extends Model
         'actors',
         'url_logo'
     ];
+
+    public $timestamps = false;
+
+    protected $allowedFilters = [
+        'movie'       => Where::class,
+    ];
+
 }

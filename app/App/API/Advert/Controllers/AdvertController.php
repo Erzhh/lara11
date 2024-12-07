@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class AdvertController extends BaseController
 {
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function store(Request $request): JsonResponse
     {
         $data = $request->all();
@@ -20,6 +24,10 @@ class AdvertController extends BaseController
         return response()->json(['advert' => $advert], 201);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function update(Request $request): JsonResponse
     {
         $id = $request->id;
@@ -32,6 +40,10 @@ class AdvertController extends BaseController
         return response()->json(['advert' => $advert], 200);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function list(Request $request): JsonResponse
     {
         $records = Advert::query()->get();
@@ -39,7 +51,10 @@ class AdvertController extends BaseController
         return response()->json(['advert' => $records]);
     }
 
-
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function findById(Request $request): JsonResponse
     {
         $id = $request->id;
@@ -48,6 +63,10 @@ class AdvertController extends BaseController
         return response()->json(['advert' => $record]);
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function deleteById(Request $request): JsonResponse
     {
         $id = $request->id;

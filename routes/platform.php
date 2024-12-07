@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\Movies\ListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ use Illuminate\Support\Facades\Route;
 // Main
 Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
+
+Route::screen('/movies', ListScreen::class)
+    ->name('platform.movies.list');

@@ -3,6 +3,7 @@
 use API\Access\Users\Controllers\UserController;
 use API\Advert\Controllers\AdvertController;
 use API\Handbooks\Controllers\AirportController;
+use API\Movies\Controllers\MovieCRUDController;
 use API\Movies\Controllers\MovieGetController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,9 @@ Route::middleware([])->group(function () {
     Route::get('users/{id}', [UserController::class, 'find']);
     Route::delete('users/{id}', [UserController::class, 'destroy']);
 
+    Route::post('movies', [MovieCRUDController::class, 'create']);
+    Route::put('movies/{id}', [MovieCRUDController::class, 'update']);
+    Route::delete('movies/{id}', [MovieCRUDController::class, 'delete']);
     Route::get('movies/list', [MovieGetController::class, 'list']);
     Route::get('movies/elastic', [MovieGetController::class, 'elastic']);
 

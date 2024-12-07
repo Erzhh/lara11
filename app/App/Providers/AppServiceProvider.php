@@ -2,8 +2,8 @@
 
 namespace App\App\Providers;
 
-use Elastic\Elasticsearch\Client;
-use Elastic\Elasticsearch\ClientBuilder;
+use App\Domain\Movies\Models\Movie;
+use App\Domain\Movies\Observers\MovieObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,23 +13,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-//        $this->bindSearchClient();
     }
 
     /**
      * Bootstrap any application services.
      */
-    public function boot()
+    public function boot(): void
     {
-        //
-    }
-
-    private function bindSearchClient(): void
-    {
-        $this->app->bind(Client::class, function ($app) {
-            return ClientBuilder::create()
-                ->setHosts($app['config']->get('services.search.hosts'))
-                ->build();
-        });
+        Movie::observe(MovieObserver::class);
     }
 }

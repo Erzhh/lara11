@@ -30,7 +30,10 @@ class PlatformProvider extends OrchidServiceProvider
     public function menu(): array
     {
         return [
-
+            Menu::make('Movies')
+                ->icon('bs.book')
+                ->title('Navigation')
+                ->route('platform.movies.list'),
         ];
     }
 }

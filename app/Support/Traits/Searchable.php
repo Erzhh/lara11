@@ -2,17 +2,12 @@
 
 namespace App\Support\Traits;
 
+use App\Domain\Movies\Models\Movie;
+use App\Domain\Movies\Observers\MovieObserver;
+use Illuminate\Database\Eloquent\Model;
+
 trait Searchable
 {
-    public static function bootSearchable()
-    {
-        // Это облегчает переключение флага поиска.
-        // Будет полезно позже при развертывании
-        // новой поисковой системы в продакшене
-        if (config('services.search.enabled')) {
-//            static::observe(ElasticsearchObserver::class);
-        }
-    }
 
     public function getSearchIndex()
     {
