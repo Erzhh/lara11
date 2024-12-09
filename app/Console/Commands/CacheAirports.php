@@ -16,7 +16,7 @@ class CacheAirports extends Command
         parent::__construct();
     }
 
-    public function handle()
+    public function handle(): void
     {
         $client = new Client();
         $response = $client->get('https://raw.githubusercontent.com/NemoTravel/nemo.travel.geodata/master/airports.json');

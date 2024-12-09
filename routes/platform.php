@@ -23,3 +23,6 @@ Route::screen('/main', PlatformScreen::class)
 
 Route::screen('/movies', ListScreen::class)
     ->name('platform.movies.list');
+
+Route::screen('/adverts', \App\Orchid\Screens\Adverts\ListScreen::class)
+    ->name('platform.adverts.list');

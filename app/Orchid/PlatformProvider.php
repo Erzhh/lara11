@@ -34,6 +34,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->icon('bs.book')
                 ->title('Navigation')
                 ->route('platform.movies.list'),
+
+            Menu::make('Adverts')
+                ->icon('bs.book')
+                ->title('Navigation')
+                ->route('platform.adverts.list'),
         ];
     }
 }

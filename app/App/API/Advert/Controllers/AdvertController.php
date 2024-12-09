@@ -1,7 +1,8 @@
 <?php
-
+declare(strict_types=1);
 namespace API\Advert\Controllers;
 
+use API\Advert\Requests\AdvertCreateRequest;
 use App\Domain\Advert\Models\Advert;
 use Core\BaseController;
 use Illuminate\Http\JsonResponse;
@@ -10,12 +11,12 @@ use Illuminate\Http\Request;
 class AdvertController extends BaseController
 {
     /**
-     * @param Request $request
+     * @param  AdvertCreateRequest $request
      * @return JsonResponse
      */
-    public function store(Request $request): JsonResponse
+    public function store(AdvertCreateRequest $request): JsonResponse
     {
-        $data = $request->all();
+        $data = $request->getData();
 
         $advert = new Advert();
         $advert->fill($data);
